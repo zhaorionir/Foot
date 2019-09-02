@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct LNode{
+	int data[100];
+	int Last;
+};
+typedef struct LNode*p;
+typedef p List;
+int length(List L1){    // 计算长度 
+	int Len;
+	Len = L1->Last+1;
+	return Len;
+}
+List MakeEmpty(){
+	List L1;
+	L1 = (List)malloc(sizeof(struct LNode));
+	L1->Last = -1;
+	return L1;
+}
+int main()
+{
+	List L1;
+	L1 = MakeEmpty();    
+	if(L1->Last == -1) printf("L1 is Empty.");
+	else printf("L1 is not Empty.");
+	return 0;
+}
