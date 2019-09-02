@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>  // 操作系统头文件 
+struct LNode{        //定义链表 
+	int data[100];   //数据内存 
+	int Last;         // 链表的最后一个 
+};
+typedef struct LNode*p;
+typedef p List;
+List MakeEmpty(){
+	List L1;
+	L1 = (List)malloc(sizeof(struct LNode));  // 申请空间 
+    L1 ->Last = -1;  //链表的最后和一个等于-1 
+    return L1;       //返回链表 
+}
+int main()
+{
+	List L1;
+	L1 = MakeEmpty();  //引用函数 
+	if(L1->Last == -1)  //链表的最后一个是否是-1 
+	printf("-1");
+	else printf("L1 is not NotEmpty.");
+	return 0;
+}
