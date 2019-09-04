@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct LNode {
+    int data[100];
+    int Last;
+};
+typedef struct LNode *PtrToLNode;
+typedef PtrToLNode List;
+
+List MakeEmpty() {
+    List L = NULL;
+    L = (List)malloc(sizeof(struct LNode));
+    L->Last = -1;
+    return L;
+}
+int Get_Length(List P) {
+    List L = NULL;
+    L = P;
+    int len = L->Last + 1;
+    return len;
+}
+void Append(List L) {
+    int i;
+    for (i = 0; i < 10; i++) {
+        L->data[i] = i+1;
+        L->Last++;
+    }
+}
+int Find(List L, int x) {
+    int i;
+    for (i = 0; i < L->Last; i++) {
+        if (L->data[i] == x) {
+            return i;
+        }
+    }
+    return -1;
+}
+void Insert(List L, int x, int i) {
+    int j;
+    if (L->Last == 100-1) {
+        printf("the list is full\n");
+        return ;
+    }
+    if (i < 1 || i > L->Last+2) {
+        printf("position is error\n");
+        return ;
+    }
+    for (j = L->Last; j >= i-1; j--) {
+        L->data[j+1] = L->data[j];
+    }
+    L->data[i-1] = x;
+    L->Last++;
+}
+int main() {
+    int t;
+    List l1 = NULL;
+    
+    l1 = MakeEmpty();               // 初始化的函数 
+    Append(l1);                     //  给链表赋值  赋值函数 
+    
+    int len = Get_Length(l1);         // 计算链表的长度  
+    if (len == 0) {
+        printf("list is empty\n");      //空链表 
+    } else {
+        printf("list is not empty and list length == %d\n", len);    //输出链表的长度   
+        for (int i = 0; i < l1->Last; i++) {                              //？？？ 
+            printf("%d ", l1->data[i]);
+        }     
+        printf("\n");
+    }
+    
+    scanf("%d", &t);
+    int idx = Find(l1, t);                    //从l1中查找 字母t 
+    if (idx == -1) { printf("No find num t, Sorry\n"); }  // 没找到 
+    else { printf("num t location is %d\n", idx); }        // 找到了idx是下标 
+    
+    scanf("%d", &t);
+    Insert(l1, t, 5);                     // 在数字5之前插入t 
+    
+    for (int i = 0; i < l1->Last; i++) {
+        printf("%d ", l1->data[i]);
+    }
+    printf("\n");
+    return 0;
+}
