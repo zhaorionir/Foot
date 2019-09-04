@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct LNode {
+    int data[100];
+    int Last;
+};
+typedef struct LNode *PtrToLNode;
+typedef PtrToLNode List;
+List MakeEmpty() {
+    List L = NULL;
+    L = (List)malloc(sizeof(struct LNode));
+    L->Last = -1;
+    return L;
+}
+int Find(List L,int x){
+	int j = 0;
+	for(j = 0;j <= L->Last;j++)
+		if(x == L->data[j])
+	return L->data[j];
+}
+int Length(List L) {
+    int len = L->Last + 1;
+    return len;
+}
+void Append(List L) {
+    int i;
+    for (i = 0; i < 10; i++) { 
+        L->data[i] = i+1; 
+        L->Last++;
+    }
+}
+int main() {
+	int tmp, ans,t;
+
+    List L;
+    L = MakeEmpty();
+    Append(L);
+    tmp = Length(L);
+    int len = Length(L);
+    if (len == 0) {
+        printf("list is empty\n");
+    } else {
+        printf("list is not empty and list length == %d\n", len);
+        for (int i = 0; i <= L->Last; i++) {
+            printf("%d ", L->data[i]);
+        }
+        printf("\n");
+    }	
+    scanf("%d",&t);
+	ans = Find(L,t);
+	printf("%d",ans);
+    return 0;
+}
