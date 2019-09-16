@@ -1,0 +1,23 @@
+List Insert (List L, ElementType X) {
+	List head = L;        // 制造head 
+	L = L->Next;            
+	List K = (List)malloc(sizeof(struct Node));
+	K->Data = X;            // 要插入的节点 
+	K->Next = NULL;
+	List p = head;         //标记头节点 
+	if(L == NULL) {         //  如果L为空 
+		head->Next = K;
+		return head;
+	}
+	while(L->Data < X) {      //找到比L->Data 小的位置 
+		p = L;                 //把头赋给L 
+		L = L->Next;             // L z再指向 L->Next 
+		if(L->Next == NULL) {    //如果L->Next == NULL 
+			L->Next = K;         // l->Next 的值等于 要插入的值 
+			return head;
+		}
+	}
+    K->Next = L;            // 要插入的值等于 L 
+    p->Next = K;               //  头节点 等于 要插入的值 
+    return head;
+}
